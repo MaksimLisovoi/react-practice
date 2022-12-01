@@ -34,16 +34,17 @@ export const EventInfo = styled.p`
   }
 `;
 
-const setBgColor = props => {
-  switch (props.eventType) {
+const setBgColor = ({ eventType, theme: { colors } }) => {
+  console.log();
+  switch (eventType) {
     case 'free':
-      return 'var(--color-green)';
+      return colors.green;
 
     case 'paid':
-      return ' var(--color-green)';
+      return colors.blue;
 
     case 'vip':
-      return 'var(--color-red)';
+      return colors.red;
 
     default:
       return ' #000';
