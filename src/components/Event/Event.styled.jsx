@@ -21,7 +21,7 @@ export const EventInfo = styled.p`
   align-items: center;
   margin-top: 0;
   margin-bottom: 8px;
-  color: var(--color-primary-text);
+  color: ${props => props.theme.colors.primaryText};
   font-size: 16px;
   line-height: 24px;
   font-weight: 400;
@@ -30,7 +30,7 @@ export const EventInfo = styled.p`
   svg {
     display: block;
     margin-right: 8px;
-    color: var(--color-secondary-text);
+    color: ${props => props.theme.colors.primaryText};
   }
 `;
 
