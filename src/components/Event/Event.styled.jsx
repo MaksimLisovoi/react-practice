@@ -47,7 +47,7 @@ const setBgColor = ({ eventType, theme: { colors } }) => {
       return colors.red;
 
     default:
-      return ' #000';
+      return colors.black;
   }
 };
 

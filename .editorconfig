@@ -13,3 +13,11 @@ indent_size = 2
 
 [*.md]
 trim_trailing_whitespace = false
+
+{
+  "files.autoSave": "onFocusChange",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  }
+}
