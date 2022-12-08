@@ -14,7 +14,7 @@ import { Box } from '../Box';
 
 export const Profile = ({ username, tag, location, avatar, stats }) => {
   return (
-    <Box border={'normal'} borderRadius={'normal'} bg={'muted'}>
+    <Box border-top={'normal'} borderRadius={'normal'} bg={'muted'}>
       <Description>
         <Avatar src={avatar}></Avatar>
         <Name>{username}</Name>

@@ -14,16 +14,18 @@ export const Friend = styled.li`
 `;
 
 export const Status = styled.span`
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 30px;
   border-radius: ${p => p.theme.radii.round};
   margin-right: ${p => p.theme.space[4]};
 
-  background-color: ${p => p.theme.colors.primary};
+  background-color: ${p => {
+    return p.isOnline ? p.theme.colors.primary : p.theme.colors.text;
+  }};
 `;
 
 export const Avatar = styled.img`
-  width: 100px;
+  width: 70px;
 
   margin-right: ${p => p.theme.space[4]};
 `;

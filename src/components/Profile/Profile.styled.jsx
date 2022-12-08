@@ -1,14 +1,5 @@
 import styled from '@emotion/styled';
 
-export const ProfileCard = styled.div`
-  position: relative;
-  border: ${p => p.theme.borders.normal} ${p => p.theme.colors.text};
-
-  border-radius: ${p => p.theme.radii.normal};
-
-  max-width: 350px;
-`;
-
 export const Description = styled.div`
   display: flex;
   flex-direction: column;
@@ -40,8 +31,10 @@ export const Location = styled.p`
 export const StatList = styled.ul`
   display: flex;
   justify-content: space-between;
+  background-color: ${p => p.theme.colors.primary};
 
-  border-top: ${p => p.theme.borders.normal} ${p => p.theme.colors.text};
+  border-bottom-left-radius: ${p => p.theme.radii.normal};
+  border-bottom-right-radius: ${p => p.theme.radii.normal};
 `;
 
 export const StatItem = styled.li`
@@ -52,7 +45,6 @@ export const StatItem = styled.li`
 
   flex: 0 1 33.33%;
 
-  background-color: ${p => p.theme.colors.primary};
   color: ${p => p.theme.colors.muted};
   padding: ${p => p.theme.space[4]};
 
