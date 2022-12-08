@@ -7,7 +7,6 @@ export const ProfileCard = styled.div`
   border-radius: ${p => p.theme.radii.normal};
 
   max-width: 350px;
-  margin: 0 auto;
 `;
 
 export const Description = styled.div`

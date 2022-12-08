@@ -1,6 +1,5 @@
 import PropTypes from 'prop-types';
 import {
-  ProfileCard,
   Description,
   Avatar,
   Name,
@@ -11,10 +10,11 @@ import {
   Label,
   Quantity,
 } from './Profile.styled';
+import { Box } from '../Box';
 
 export const Profile = ({ username, tag, location, avatar, stats }) => {
   return (
-    <ProfileCard>
+    <Box border={'normal'} borderRadius={'normal'} bg={'muted'}>
       <Description>
         <Avatar src={avatar}></Avatar>
         <Name>{username}</Name>
@@ -30,7 +30,7 @@ export const Profile = ({ username, tag, location, avatar, stats }) => {
           </StatItem>
         ))}
       </StatList>
-    </ProfileCard>
+    </Box>
   );
 };
 
