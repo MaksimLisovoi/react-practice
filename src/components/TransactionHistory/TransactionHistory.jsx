@@ -4,7 +4,7 @@ import { Head, Row, Heading, Data, Body } from './TransactionHistory.styled';
 
 export const TransactionHistory = ({ transactions }) => {
   return (
-    <Box as="table">
+    <Box as="table" mt={'5'}>
       <Head>
         <Row>
           <Heading>Type</Heading>
