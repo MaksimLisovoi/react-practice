@@ -1,8 +1,8 @@
 import { Container } from './App.styled';
-import { Profile } from '../Profile/Profile';
-import { Statistics } from 'components/Statistics/Statistics';
-import { FriendList } from '../FriendList/FriendList';
-import { TransactionHistory } from '../TransactionHistory/TransactionHistory';
+import { Profile } from '../Profile';
+import { Statistics } from '../Statistics';
+import { FriendList } from '../FriendList';
+import { TransactionHistory } from '../TransactionHistory';
 import user from '../../db/user.json';
 import data from '../../db/data.json';
 import friends from '../../db/friends';

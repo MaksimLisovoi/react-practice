@@ -18,6 +18,8 @@ export const StatItem = styled.li`
 
   flex: 0 1 20%;
   padding: ${p => p.theme.space[5]};
+  background-color: ${p => p.theme.colors.teal};
+  color: ${p => p.theme.colors.white};
 
   :not(:last-child) {
     border-right: ${p => p.theme.borders.normal} ${p => p.theme.colors.text};

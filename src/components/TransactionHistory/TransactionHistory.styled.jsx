@@ -13,7 +13,7 @@ export const Row = styled.tr`
 `;
 
 export const Heading = styled.th`
-  background-color: ${p => p.theme.colors.tableHead};
+  background-color: ${p => p.theme.colors.teal};
   color: ${p => p.theme.colors.white};
   padding: ${p => p.theme.space[4]};
 `;
