@@ -4,7 +4,7 @@ import './App.css';
 export const App = () => {
   return (
     <>
-      <Counter></Counter>
+      <Counter initialValue={10}></Counter>
     </>
   );
 };
