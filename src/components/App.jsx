@@ -3,7 +3,7 @@ import { Dropdown } from './Dropdown';
 import { ColorPicker } from './ColorPicker';
 import { TodoList } from './TodoList';
 import React, { Component } from 'react';
-// import todos from '.././todos.json';
+import initialTodos from '.././todos.json';
 import './App.css';
 
 const colorPickerOptions = [
@@ -17,22 +17,35 @@ const colorPickerOptions = [
 
 class App extends Component {
   state = {
-    todos: [
-      { id: 'id-1', text: 'Выучить основы React', completed: true },
-      { id: 'id-2', text: 'Разобраться с React Router', completed: false },
-      { id: 'id-3', text: 'Пережить Redux', completed: false },
-    ],
+    todos: initialTodos,
+  };
+
+  deleteTodo = todoId => {
+    this.setState(prevState => ({
+      todos: prevState.todos.filter(todo => todo.id !== todoId),
+    }));
   };
 
   render() {
     const { todos } = this.state;
+
+    const totalTodos = todos.length;
+    const completedTodo = todos.reduce(
+      (acc, todo) => (todo.completed ? acc + 1 : acc),
+      0,
+    );
 
     return (
       <>
         <Counter initialValue={10} />
         <Dropdown />
         <ColorPicker options={colorPickerOptions} />
-        <TodoList todos={todos} />
+
+        <div>
+          <p>Общее кол-во: {totalTodos}</p>
+          <p>Кол-во выполненных:{completedTodo} </p>
+        </div>
+        <TodoList todos={todos} onDeleteTodo={this.deleteTodo} />
       </>
     );
   }
