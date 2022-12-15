@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions';
 import { Section } from './Section';
 import { Statistics } from './Statistics';
+import { Notification } from './Notification/Notification';
 
 export class App extends Component {
   state = {
@@ -19,20 +20,13 @@ export class App extends Component {
   totalFeedBack = () => this.state.good + this.state.neutral + this.state.bad;
 
   positivePercentage = () => {
-    const positive = Math.round((this.state.good * 100) / this.totalFeedBack());
-
-    console.log(Number.isNaN(positive));
-
-    console.log(positive);
-
-    return Number.isNaN(positive) ? 0 : positive;
+    return Math.round((this.state.good * 100) / this.totalFeedBack());
   };
 
   render() {
     const { good, bad, neutral } = this.state;
     const total = this.totalFeedBack();
     const positive = this.positivePercentage();
-    console.log(positive);
 
     return (
       <>
@@ -41,13 +35,17 @@ export class App extends Component {
         </Section>
 
         <Section title="Statistics">
-          <Statistics
-            good={good}
-            bad={bad}
-            neutral={neutral}
-            total={total}
-            positivePercentage={positive}
-          />
+          {total === 0 ? (
+            <Notification message="There is no feedback"></Notification>
+          ) : (
+            <Statistics
+              good={good}
+              bad={bad}
+              neutral={neutral}
+              total={total}
+              positivePercentage={positive}
+            />
+          )}
         </Section>
       </>
     );
