@@ -1,4 +1,5 @@
 import { ControlsBlock, Btn } from './FeedbackOptions.styled';
+import PropTypes from 'prop-types';
 
 export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
   const buttonNames = Object.keys(options);
@@ -12,4 +13,9 @@ export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
       ))}
     </ControlsBlock>
   );
+};
+
+FeedbackOptions.propTypes = {
+  options: PropTypes.object.isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };

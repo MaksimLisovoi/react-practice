@@ -3,6 +3,7 @@ import { FeedbackOptions } from './FeedbackOptions';
 import { Section } from './Section';
 import { Statistics } from './Statistics';
 import { Notification } from './Notification/Notification';
+import { Box } from './Box';
 
 export class App extends Component {
   state = {
@@ -29,7 +30,7 @@ export class App extends Component {
     const positive = this.positivePercentage();
 
     return (
-      <>
+      <Box mx="auto" maxWidth={450} p={'5'}>
         <Section title="Please leave your feedback">
           <FeedbackOptions onLeaveFeedback={this.leaveFeedback} options={this.state} />
         </Section>
@@ -47,7 +48,7 @@ export class App extends Component {
             />
           )}
         </Section>
-      </>
+      </Box>
     );
   }
 }
