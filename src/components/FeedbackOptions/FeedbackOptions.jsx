@@ -1,11 +1,15 @@
 import { ControlsBlock, Btn } from './FeedbackOptions.styled';
 
-export const FeedbackOptions = () => (
-  <ControlsBlock>
-    <Btn onClick={() => {}} type="button">
-      Good
-    </Btn>
-    <Btn type="button">Neutral</Btn>
-    <Btn type="button">Bad</Btn>
-  </ControlsBlock>
-);
+export const FeedbackOptions = ({ onLeaveFeedback, options }) => {
+  const buttonNames = Object.keys(options);
+
+  return (
+    <ControlsBlock>
+      {buttonNames.map(btnName => (
+        <Btn onClick={onLeaveFeedback} key={btnName} type="button" name={btnName}>
+          {btnName[0].toUpperCase() + btnName.slice(1)}
+        </Btn>
+      ))}
+    </ControlsBlock>
+  );
+};

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { FeedbackOptions } from './FeedbackOptions';
-import { Section } from '../components/Section';
+import { Section } from './Section';
+import { Statistics } from './Statistics';
 
 export class App extends Component {
   state = {
@@ -9,27 +10,45 @@ export class App extends Component {
     bad: 0,
   };
 
+  leaveFeedback = e => {
+    this.setState(prevState => ({
+      [e.target.name]: prevState[e.target.name] + 1,
+    }));
+  };
+
+  totalFeedBack = () => this.state.good + this.state.neutral + this.state.bad;
+
+  positivePercentage = () => {
+    const positive = Math.round((this.state.good * 100) / this.totalFeedBack());
+
+    console.log(Number.isNaN(positive));
+
+    console.log(positive);
+
+    return Number.isNaN(positive) ? 0 : positive;
+  };
+
   render() {
+    const { good, bad, neutral } = this.state;
+    const total = this.totalFeedBack();
+    const positive = this.positivePercentage();
+    console.log(positive);
+
     return (
       <>
         <Section title="Please leave your feedback">
-          <FeedbackOptions></FeedbackOptions>
+          <FeedbackOptions onLeaveFeedback={this.leaveFeedback} options={this.state} />
         </Section>
 
-        {/* <div>
-          <button type="button"></button>
-          <button type="button"></button>
-          <button type="button"></button>
-        </div> */}
-
-        {/* <FeedbackOptions /> */}
-
-        {/* <div>
-          <h1></h1>
-          <span></span>
-          <span></span>
-          <span></span>
-        </div> */}
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            bad={bad}
+            neutral={neutral}
+            total={total}
+            positivePercentage={positive}
+          />
+        </Section>
       </>
     );
   }
