@@ -79,9 +79,7 @@ export class Form extends Component {
             required
           />
         </label>
-        <button type="submit" disabled={!this.state.licence}>
-          Add contact
-        </button>
+        <button type="submit">Add contact</button>
         {/* CHECK BOX */}
         {/* <label>
           <input
