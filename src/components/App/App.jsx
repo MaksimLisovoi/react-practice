@@ -17,9 +17,20 @@ export class App extends Component {
   };
 
   formSubmitHandler = data => {
-    console.log(data);
+    const { contacts } = this.state;
+
+    if (contacts.some(contact => contact.name.toLowerCase() === data.name.toLowerCase())) {
+      return alert(`${data.name} is already in contacts`);
+    }
+
     this.setState(prevState => ({
       contacts: [...prevState.contacts, data],
+    }));
+  };
+
+  deleteContact = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
     }));
   };
 
@@ -44,7 +55,7 @@ export class App extends Component {
         <Heading>Phonebook</Heading>
         <Form onSubmit={this.formSubmitHandler} />
         <Heading>Contacts</Heading>
-        <Contacts contacts={visibleContacts} />
+        <Contacts contacts={visibleContacts} onDeleteContact={this.deleteContact} />
         <Filter filteredValue={filter} onChangeFilter={this.changeFilter} />
       </Box>
     );

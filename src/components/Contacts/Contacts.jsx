@@ -1,10 +1,13 @@
-import { ContactItem } from './Contacts.styled';
+import { ContactItem, Btn, Text } from './Contacts.styled';
 
-export const Contacts = ({ contacts }) => (
+export const Contacts = ({ contacts, onDeleteContact }) => (
   <ul>
     {contacts.map(({ name, number, id }) => (
       <ContactItem key={id}>
-        {name}: {number}
+        <Text>
+          {name}: {number}
+        </Text>
+        <Btn onClick={() => onDeleteContact(id)}>Delete</Btn>
       </ContactItem>
     ))}
   </ul>

@@ -5,3 +5,6 @@ export const ContactItem = styled.li`
     margin-bottom: ${p => p.theme.space[4]};
   }
 `;
+export const Btn = styled.button``;
+
+export const Text = styled.p``;
