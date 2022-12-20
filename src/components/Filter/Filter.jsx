@@ -1,6 +1,8 @@
+import { Input } from 'components/Form/Form.styled';
+
 export const Filter = ({ filteredValue, onChangeFilter }) => (
   <label>
     Фильтр по имени:
-    <input type="text" value={filteredValue} onChange={onChangeFilter} />
+    <Input type="text" value={filteredValue} onChange={onChangeFilter} />
   </label>
 );
