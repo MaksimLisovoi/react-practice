@@ -27,14 +27,24 @@ export class App extends Component {
     this.setState({ filter: e.currentTarget.value });
   };
 
-  render() {
+  getVisibleContacts = () => {
     const { contacts, filter } = this.state;
+    const normalizedFilter = filter.toLocaleLowerCase();
+
+    return contacts.filter(contact => contact.name.includes(normalizedFilter));
+  };
+
+  render() {
+    const { filter } = this.state;
+
+    const visibleContacts = this.getVisibleContacts();
+
     return (
       <Box mx="auto" maxWidth={450} p={'5'}>
         <Heading>Phonebook</Heading>
         <Form onSubmit={this.formSubmitHandler} />
         <Heading>Contacts</Heading>
-        <Contacts contacts={contacts} />
+        <Contacts contacts={visibleContacts} />
         <Filter filteredValue={filter} onChangeFilter={this.changeFilter} />
       </Box>
     );
