@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { FormBox } from './Form.styled';
+import { FormBox, Label, Input, Btn } from './Form.styled';
 import { nanoid } from 'nanoid';
 
 export class Form extends Component {
@@ -42,7 +42,7 @@ export class Form extends Component {
     this.setState({ name: '', number: '' });
   };
 
-  handleLisenceChange = e => {
+  handleLicenceChange = e => {
     console.log(e.currentTarget.checked);
 
     this.setState({
@@ -53,9 +53,9 @@ export class Form extends Component {
   render() {
     return (
       <FormBox onSubmit={this.handleSubmit}>
-        Name
-        <label htmlFor={this.nameInputId}>
-          <input
+        <Label htmlFor={this.nameInputId}>
+          Name
+          <Input
             id={this.nameInputId}
             onChange={this.handleChange}
             type="text"
@@ -65,10 +65,10 @@ export class Form extends Component {
             title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
             required
           />
-        </label>
-        <label htmlFor={this.numberInputId}>
+        </Label>
+        <Label htmlFor={this.numberInputId}>
           Number
-          <input
+          <Input
             id={this.numberInputId}
             onChange={this.handleChange}
             type="tel"
@@ -78,15 +78,15 @@ export class Form extends Component {
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           />
-        </label>
-        <button type="submit">Add contact</button>
+        </Label>
+        <Btn type="submit">Add contact</Btn>
         {/* CHECK BOX */}
         {/* <label>
           <input
             type="checkbox"
             name="licence"
             checked={this.state.licence}
-            onChange={this.handleLisenceChange}
+            onChange={this.handleLicenceChange}
           />
           Согласен с условием
         </label> */}
