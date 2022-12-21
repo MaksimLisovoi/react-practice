@@ -19,6 +19,24 @@ export class App extends Component {
     showModal: false,
   };
 
+  componentDidMount() {
+    const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
+
+    if (localStorageContacts) {
+      this.setState({ contacts: localStorageContacts });
+    }
+
+    console.log(localStorageContacts);
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+      console.log('Контакты обновились');
+
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+    }
+  }
+
   formSubmitHandler = data => {
     const { contacts } = this.state;
 
@@ -48,25 +66,6 @@ export class App extends Component {
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
   };
 
-  componentDidMount() {
-    const localStorageContacts = JSON.parse(localStorage.getItem('contacts'));
-
-    if (localStorageContacts) {
-      this.setState({ contacts: localStorageContacts });
-    }
-
-    // this.setState({ contacts: localStorageContacts });
-    console.log(localStorageContacts);
-  }
-
-  componentDidUpdate(prevProps, prevState) {
-    if (this.state.contacts !== prevState.contacts) {
-      console.log('Контакты обновились');
-
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
   toggleModal = () => {
     this.setState(({ showModal }) => ({
       showModal: !showModal,
@@ -75,7 +74,7 @@ export class App extends Component {
 
   render() {
     console.log('Render');
-    const { filter, showModal } = this.state;
+    const { filter, showModal, contacts } = this.state;
 
     const visibleContacts = this.getVisibleContacts();
 
@@ -99,13 +98,18 @@ export class App extends Component {
           <Heading>Phonebook</Heading>
           <Form onSubmit={this.formSubmitHandler} />
         </Box>
-        <Box border="normal" borderRadius={'normal'} p={5}>
-          <Heading>Contacts</Heading>
-          <Filter filteredValue={filter} onChangeFilter={this.changeFilter} />
-          <Contacts contacts={visibleContacts} onDeleteContact={this.deleteContact} />
-        </Box>
+        {contacts.length > 0 && (
+          <Box border="normal" borderRadius={'normal'} p={5}>
+            <Heading>Contacts</Heading>
+            {contacts.length > 1 && (
+              <Filter filteredValue={filter} onChangeFilter={this.changeFilter} />
+            )}
+
+            <Contacts contacts={visibleContacts} onDeleteContact={this.deleteContact} />
+          </Box>
+        )}
         <Btn type="button" onClick={this.toggleModal}>
-          Открыть модалку{' '}
+          Открыть модалку
         </Btn>
       </Box>
     );
