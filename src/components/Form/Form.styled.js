@@ -24,8 +24,8 @@ export const Input = styled.input`
 
 export const Btn = styled.button`
   width: 160px;
-  padding: ${p => p.theme.space[3]};
   margin-top: ${p => p.theme.space[5]};
+  padding: ${p => p.theme.space[3]};
   background-color: ${p => p.theme.colors.primary};
   color: ${p => p.theme.colors.white};
   border: ${p => p.theme.borders.none};

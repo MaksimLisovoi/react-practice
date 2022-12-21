@@ -40,9 +40,9 @@ export class App extends Component {
 
   getVisibleContacts = () => {
     const { contacts, filter } = this.state;
-    const normalizedFilter = filter.toLocaleLowerCase();
+    const normalizedFilter = filter.toLowerCase();
 
-    return contacts.filter(contact => contact.name.includes(normalizedFilter));
+    return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
   };
 
   render() {
@@ -52,11 +52,15 @@ export class App extends Component {
 
     return (
       <Box mx="auto" maxWidth={450} p={'5'}>
-        <Heading>Phonebook</Heading>
-        <Form onSubmit={this.formSubmitHandler} />
-        <Heading>Contacts</Heading>
-        <Contacts contacts={visibleContacts} onDeleteContact={this.deleteContact} />
-        <Filter filteredValue={filter} onChangeFilter={this.changeFilter} />
+        <Box border="normal" borderRadius={'normal'} p={5} mb={4}>
+          <Heading>Phonebook</Heading>
+          <Form onSubmit={this.formSubmitHandler} />
+        </Box>
+        <Box border="normal" borderRadius={'normal'} p={5}>
+          <Heading>Contacts</Heading>
+          <Filter filteredValue={filter} onChangeFilter={this.changeFilter} />
+          <Contacts contacts={visibleContacts} onDeleteContact={this.deleteContact} />
+        </Box>
       </Box>
     );
   }
