@@ -25,14 +25,10 @@ export class App extends Component {
     if (localStorageContacts) {
       this.setState({ contacts: localStorageContacts });
     }
-
-    console.log(localStorageContacts);
   }
 
   componentDidUpdate(prevProps, prevState) {
     if (this.state.contacts !== prevState.contacts) {
-      console.log('Контакты обновились');
-
       localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
     }
   }
@@ -81,7 +77,7 @@ export class App extends Component {
     return (
       <Box mx="auto" maxWidth={450} p={'5'}>
         {showModal && (
-          <Modal>
+          <Modal onClose={this.toggleModal}>
             <h1>Hello, world!!!</h1>
             <p>
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Cum delectus eligendi vitae
