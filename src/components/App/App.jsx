@@ -69,7 +69,6 @@ export class App extends Component {
   };
 
   render() {
-    console.log('Render');
     const { filter, showModal, contacts } = this.state;
 
     const visibleContacts = this.getVisibleContacts();
