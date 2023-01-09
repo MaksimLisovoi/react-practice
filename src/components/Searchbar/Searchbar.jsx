@@ -1,6 +1,12 @@
-import styled from '@emotion/styled';
+import React, { Component } from 'react';
 
-import { SearchbarHeader, SearchForm, SearchBtn, BtnLabel, Input } from './Searchbar.styled';
+import {
+  SearchbarHeader,
+  SearchForm,
+  SearchBtn,
+  BtnLabel,
+  Input,
+} from './Searchbar.styled';
 
 export class Searchbar extends Component {
   state = {};
@@ -13,7 +19,12 @@ export class Searchbar extends Component {
             <BtnLabel>Search</BtnLabel>
           </SearchBtn>
 
-          <Input type="text" autocomplete="off" autofocus placeholder="Search images and photos" />
+          <Input
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+          />
         </SearchForm>
       </SearchbarHeader>
     );
