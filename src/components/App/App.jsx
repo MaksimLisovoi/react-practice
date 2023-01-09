@@ -12,6 +12,8 @@ export class App extends Component {
     searchQuery: '',
     isLoading: false,
     error: null,
+    showModal: false,
+    currenImg: '',
   };
 
   componentDidMount() {}
@@ -47,6 +49,12 @@ export class App extends Component {
       })
       .catch(error => this.setState({ error: error }))
       .finally(() => this.setState({ isLoading: false }));
+  };
+
+  toggleModal = () => {
+    this.setState(({ showModal }) => ({
+      showModal: !showModal,
+    }));
   };
 
   render() {
