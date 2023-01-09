@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import { AppBody } from './App.styled';
+import { AppBody, LoadMoreBtn, Heading } from './App.styled';
 import { Searchbar } from '../Searchbar';
 import { ImageGallery } from 'components/ImageGallery';
 import picturesApi from '../../services/pictures-api';
@@ -11,6 +11,7 @@ export class App extends Component {
     currentPage: 1,
     searchQuery: '',
     isLoading: false,
+    error: null,
   };
 
   componentDidMount() {}
@@ -22,7 +23,12 @@ export class App extends Component {
   }
 
   onChangeQuery = query => {
-    this.setState({ searchQuery: query, currentPage: 1, pictures: [] });
+    this.setState({
+      searchQuery: query,
+      currentPage: 1,
+      pictures: [],
+      error: null,
+    });
   };
 
   fetchPictures = () => {
@@ -39,24 +45,27 @@ export class App extends Component {
           currentPage: prevState.currentPage + 1,
         }));
       })
+      .catch(error => this.setState({ error: error }))
       .finally(() => this.setState({ isLoading: false }));
   };
 
   render() {
-    const { pictures, isLoading } = this.state;
+    const { pictures, isLoading, error } = this.state;
+    const shouldRenderLoadMoreBtn = pictures.length > 0 && !isLoading;
+
     return (
       <>
+        {error && <Heading>Ошибка !!!</Heading>}
         <AppBody>
           <Searchbar onSubmit={this.onChangeQuery} />
           <ImageGallery pictures={pictures} />
-          {isLoading && <h1>Loading...</h1>}
+          {isLoading && <Heading>Loading...</Heading>}
+          {shouldRenderLoadMoreBtn && (
+            <LoadMoreBtn onClick={this.fetchPictures} type="button">
+              Load more...
+            </LoadMoreBtn>
+          )}
         </AppBody>
-
-        {pictures.length > 0 && !isLoading && (
-          <button onClick={this.fetchPictures} type="button">
-            Load more...
-          </button>
-        )}
       </>
     );
   }
