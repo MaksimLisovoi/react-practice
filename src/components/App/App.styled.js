@@ -41,3 +41,7 @@ export const LoadMoreBtn = styled.button`
     background-color: #303f9f;
   }
 `;
+export const SpinnerBox = styled.div`
+  display: flex;
+  justify-content: center;
+`;

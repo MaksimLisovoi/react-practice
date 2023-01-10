@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 
-import { AppBody, LoadMoreBtn, Heading } from './App.styled';
+import { AppBody, LoadMoreBtn, Heading, SpinnerBox } from './App.styled';
 import { Searchbar } from '../Searchbar';
 import { ImageGallery } from 'components/ImageGallery';
 import picturesApi from '../../services/pictures-api';
+import { ColorRing } from 'react-loader-spinner';
 
 export class App extends Component {
   state = {
@@ -12,8 +13,6 @@ export class App extends Component {
     searchQuery: '',
     isLoading: false,
     error: null,
-    showModal: false,
-    currenImg: '',
   };
 
   componentDidMount() {}
@@ -51,12 +50,6 @@ export class App extends Component {
       .finally(() => this.setState({ isLoading: false }));
   };
 
-  toggleModal = () => {
-    this.setState(({ showModal }) => ({
-      showModal: !showModal,
-    }));
-  };
-
   render() {
     const { pictures, isLoading, error } = this.state;
     const shouldRenderLoadMoreBtn = pictures.length > 0 && !isLoading;
@@ -67,7 +60,19 @@ export class App extends Component {
         <AppBody>
           <Searchbar onSubmit={this.onChangeQuery} />
           <ImageGallery pictures={pictures} />
-          {isLoading && <Heading>Loading...</Heading>}
+          {isLoading && (
+            <SpinnerBox>
+              <ColorRing
+                visible={true}
+                height="100"
+                width="100"
+                ariaLabel="blocks-loading"
+                wrapperStyle={{}}
+                wrapperClass="blocks-wrapper"
+                colors={['#e15b64', '#f47e60', '#f8b26a', '#abbd81', '#849b87']}
+              />
+            </SpinnerBox>
+          )}
           {shouldRenderLoadMoreBtn && (
             <LoadMoreBtn onClick={this.fetchPictures} type="button">
               Load more...

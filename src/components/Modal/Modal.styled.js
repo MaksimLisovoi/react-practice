@@ -8,7 +8,6 @@ export const Content = styled.div`
   min-height: 300px;
   max-width: 600px;
   width: 100%;
-  padding: 12px;
   background-color: #fff;
   border-radius: 3px;
   box-shadow: 0px 2px 1px -1px rgba(0, 0, 0, 0.2),
