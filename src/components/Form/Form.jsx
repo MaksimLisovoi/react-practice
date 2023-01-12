@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { FormBox, Label, Input, Btn } from './Form.styled';
 import { nanoid } from 'nanoid';
 
@@ -24,6 +24,14 @@ export function Form({ onSubmit }) {
         return;
     }
   };
+
+  useEffect(() => {
+    window.localStorage.setItem('name', JSON.stringify(name));
+  }, [name]);
+
+  useEffect(() => {
+    window.localStorage.setItem('number', JSON.stringify(number));
+  }, [number]);
 
   const handleSubmit = e => {
     e.preventDefault();

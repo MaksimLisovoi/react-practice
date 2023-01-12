@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Box } from '../Box';
 import { Form } from 'components/Form';
 import { Heading } from './App.styled';
@@ -6,14 +6,17 @@ import { Contacts } from 'components/Contacts';
 import { Filter } from 'components/Filter';
 
 export function App() {
-  const [contacts, setContacts] = useState([
-    { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-    { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-    { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-    { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-  ]);
+  const localContacts = JSON.parse(window.localStorage.getItem('contacts'));
+
+  const [contacts, setContacts] = useState(() => {
+    return localContacts ?? [];
+  });
 
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    window.localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
 
   const formSubmitHandler = data => {
     if (contacts.some(contact => contact.name.toLowerCase() === data.name.toLowerCase())) {
@@ -34,6 +37,10 @@ export function App() {
   };
 
   const getVisibleContacts = () => {
+    // if (contacts.length === 0) {
+    //   return;
+    // }
+
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
