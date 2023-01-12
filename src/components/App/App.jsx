@@ -39,7 +39,7 @@ export class App extends Component {
     this.setState({ isLoading: true });
 
     picturesApi
-      .fetchPictures(options)
+      .fetchPics(options)
       .then(({ data }) => {
         this.setState(prevState => ({
           pictures: [...prevState.pictures, ...data.hits],
