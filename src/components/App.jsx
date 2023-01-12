@@ -10,6 +10,14 @@ export function App() {
   const [bad, setBad] = useState(0);
   const [neutral, setNeutral] = useState(0);
 
+  const leaveFeedback = e => {
+    this.setState(prevState => ({
+      [e.target.name]: prevState[e.target.name] + 1,
+    }));
+
+    const { name } = e.target;
+  };
+
   return (
     <Box mx="auto" maxWidth={450} p={'5'}>
       <Section title="Statistics">
