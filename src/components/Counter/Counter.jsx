@@ -1,46 +1,30 @@
-import React, { Component } from 'react';
+// import React, { Component } from 'react';
+import { useState } from 'react';
 import { Controls } from './Controls';
+import PropTypes from 'prop-types';
 
 import './Counter.css';
 
-export class Counter extends Component {
-  static defaultProps = {
-    initialValue: 20,
+export function Counter({ initialValue }) {
+  const [value, setValue] = useState(initialValue);
+
+  const handleIncrement = () => {
+    setValue(prevState => prevState + 1);
   };
 
-  state = {
-    value: this.props.initialValue,
+  const handleDecrement = () => {
+    setValue(prevState => prevState - 1);
   };
 
-  handleIncrement = () => {
-    this.setState(prevState => ({
-      value: prevState.value + 1,
-    }));
-  };
+  return (
+    <div className="Counter">
+      <span className="Counter__value">{value}</span>
 
-  handleDecrement = () => {
-    this.setState(prevState => ({
-      value: prevState.value - 1,
-    }));
-  };
-
-  render() {
-    const { value } = this.state;
-    return (
-      <div className="Counter">
-        <span className="Counter__value">{value}</span>
-
-        <Controls onIncrement={this.handleIncrement} onDecrement={this.handleDecrement} />
-
-        {/* <div className="Counter__controls">
-          <button type="button" onClick={this.handleIncrement}>
-            Увеличить на 1
-          </button>
-          <button type="button" onClick={this.handleDecrement}>
-            Уменьшить на 1
-          </button>
-        </div> */}
-      </div>
-    );
-  }
+      <Controls onIncrement={handleIncrement} onDecrement={handleDecrement} />
+    </div>
+  );
 }
+
+Counter.propTypes = {
+  initialValue: PropTypes.number.isRequired,
+};

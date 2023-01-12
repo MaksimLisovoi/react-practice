@@ -1,4 +1,5 @@
 import './Controls.css';
+import PropTypes from 'prop-types';
 
 export const Controls = ({ onIncrement, onDecrement }) => (
   <div className="Counter__controls">
@@ -10,3 +11,8 @@ export const Controls = ({ onIncrement, onDecrement }) => (
     </button>
   </div>
 );
+
+Controls.propTypes = {
+  onIncrement: PropTypes.func.isRequired,
+  onDecrement: PropTypes.func.isRequired,
+};
