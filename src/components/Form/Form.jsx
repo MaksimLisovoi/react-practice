@@ -1,7 +1,8 @@
-// import React, { Component } from 'react';
 import { useState } from 'react';
 import { FormBox, Label, Input, Btn } from './Form.styled';
 import { nanoid } from 'nanoid';
+
+import PropTypes from 'prop-types';
 
 export function Form({ onSubmit }) {
   const [name, setName] = useState('');
@@ -78,3 +79,7 @@ export function Form({ onSubmit }) {
     </FormBox>
   );
 }
+
+Form.propTypes = {
+  onSubmit: PropTypes.func.isRequired,
+};
