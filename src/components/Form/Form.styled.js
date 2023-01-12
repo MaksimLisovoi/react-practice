@@ -30,4 +30,11 @@ export const Btn = styled.button`
   color: ${p => p.theme.colors.white};
   border: ${p => p.theme.borders.none};
   border-radius: ${p => p.theme.radii.normal};
+  transition: background-color 200ms ease-in-out;
+
+  cursor: pointer;
+
+  &:hover {
+    background-color: ${p => p.theme.colors.secondary};
+  }
 `;
