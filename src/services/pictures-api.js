@@ -9,4 +9,8 @@ const fetchPictures = ({ searchQuery, currentPage = 1, perPage = 5 }) => {
   );
 };
 
-export default { fetchPictures };
+const picturesApi = {
+  fetchPictures,
+};
+
+export default picturesApi;
