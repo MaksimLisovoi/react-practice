@@ -36,8 +36,9 @@ export const App = () => {
     picturesApi
       .fetchPictures(options)
       .then(({ data }) => {
-        setPictures(prevState => [...prevState, ...data.hits]);
-        setCurrentPage(prevState => prevState + 1);
+        console.log(data);
+        setPictures(prevPictures => [...prevPictures, ...data.hits]);
+        setCurrentPage(prevPage => prevPage + 1);
       })
       .catch(error => setError(error))
       .finally(() => setIsLoading(false));

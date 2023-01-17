@@ -7,7 +7,6 @@ const modalRoot = document.querySelector('#modal-root');
 export const Modal = ({ children, onClose }) => {
   useEffect(() => {
     const handleKeyDown = e => {
-      console.log('Прослушиваем событие ');
       if (e.code === 'Escape') {
         onClose();
       }
