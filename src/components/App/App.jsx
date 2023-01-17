@@ -5,9 +5,9 @@ import { Heading } from './App.styled';
 import { Contacts } from 'components/Contacts';
 import { Filter } from 'components/Filter';
 
-export function App() {
-  const localContacts = JSON.parse(window.localStorage.getItem('contacts'));
+const localContacts = JSON.parse(window.localStorage.getItem('contacts'));
 
+export function App() {
   const [contacts, setContacts] = useState(() => {
     return localContacts ?? [];
   });
@@ -37,10 +37,6 @@ export function App() {
   };
 
   const getVisibleContacts = () => {
-    // if (contacts.length === 0) {
-    //   return;
-    // }
-
     const normalizedFilter = filter.toLowerCase();
 
     return contacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
