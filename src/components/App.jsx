@@ -1,9 +1,17 @@
-import { Sales } from 'pages/Sales';
+import { lazy } from 'react';
+// import { Sales } from 'pages/Sales';
 import { Route, Routes, Navigate } from 'react-router';
 import { GlobalStyle } from './GlobalStyle';
 import { InvoiceDetails } from './InvoiceDetails';
-import { Invoices } from './Invoices';
+// import { Invoices } from './Invoices';
 import { Layout } from './Layout';
+// import { Customers } from 'pages/Customers';
+// import { CustomerDetails } from 'pages/CustomerDetails';
+
+const Sales = lazy(() => import('../pages/Sales'));
+const Customers = lazy(() => import('../pages/Customers'));
+const CustomerDetails = lazy(() => import('../pages/CustomerDetails'));
+const Invoices = lazy(() => import('./Invoices'));
 
 export const App = () => {
   return (
@@ -26,7 +34,11 @@ export const App = () => {
           </Route>
           <Route path="reports" element={<div>Reports</div>}></Route>
           <Route path="feedback" element={<div>Feedbacks</div>}></Route>
-          <Route path="customers" element={<div>Customers</div>}></Route>
+          <Route path="customers" element={<Customers />}></Route>
+          <Route
+            path="customers/:customerId"
+            element={<CustomerDetails />}
+          ></Route>
         </Route>
       </Routes>
 

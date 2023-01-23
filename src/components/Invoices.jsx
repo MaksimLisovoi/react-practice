@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Box } from './Box';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { getInvoices } from 'fakeApi';
 import { NavLink, Outlet } from 'react-router-dom';
 
@@ -18,14 +18,12 @@ const NavItem = styled(NavLink)`
   }
 `;
 
-export const Invoices = () => {
+const Invoices = () => {
   const [invoices, setInvoices] = useState([]);
 
   useEffect(() => {
     getInvoices().then(setInvoices);
   }, []);
-
-  console.log(invoices);
 
   return (
     <Box display="flex" height="100vw">
@@ -42,7 +40,10 @@ export const Invoices = () => {
           </NavItem>
         ))}
       </Box>
+
       <Outlet />
     </Box>
   );
 };
+
+export default Invoices;

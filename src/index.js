@@ -6,7 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { theme } from './theme';
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.StrictMode baseName="react-practice">
     <BrowserRouter>
       <ThemeProvider theme={theme}>
         <App />
