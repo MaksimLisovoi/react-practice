@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { Box } from './Box';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect } from 'react';
 import { getInvoices } from 'fakeApi';
 import { NavLink, Outlet } from 'react-router-dom';
 
