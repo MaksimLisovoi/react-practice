@@ -1,5 +1,5 @@
 import { Sales } from 'pages/Sales';
-import { Route, Routes } from 'react-router';
+import { Route, Routes, Navigate } from 'react-router';
 import { GlobalStyle } from './GlobalStyle';
 import { InvoiceDetails } from './InvoiceDetails';
 import { Invoices } from './Invoices';
@@ -10,7 +10,7 @@ export const App = () => {
     <>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<div>Home page index route</div>} />
+          <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<div>Dashboard</div>}></Route>
           <Route path="sales" element={<Sales />}>
             <Route index element={<div>Sales index route</div>} />
