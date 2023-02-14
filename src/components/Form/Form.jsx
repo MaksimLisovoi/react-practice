@@ -3,10 +3,15 @@ import { FormBox, Label, Input, Btn } from './Form.styled';
 import { nanoid } from 'nanoid';
 
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector } from 'react-redux';
+import { addContact } from 'redux/actions';
+import { getContacts } from 'redux/selectors';
 
-export function Form({ onSubmit }) {
+export function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  const contacts = useSelector(getContacts);
 
   const handleChange = e => {
     const { name, value } = e.target;
@@ -25,24 +30,29 @@ export function Form({ onSubmit }) {
     }
   };
 
-  useEffect(() => {
-    window.localStorage.setItem('name', JSON.stringify(name));
-  }, [name]);
+  // useEffect(() => {
+  //   window.localStorage.setItem('name', JSON.stringify(name));
+  // }, [name]);
 
-  useEffect(() => {
-    window.localStorage.setItem('number', JSON.stringify(number));
-  }, [number]);
+  // useEffect(() => {
+  //   window.localStorage.setItem('number', JSON.stringify(number));
+  // }, [number]);
+
+  const dispatch = useDispatch();
 
   const handleSubmit = e => {
     e.preventDefault();
 
     const data = {
-      id: nanoid(),
       name: name,
       number: number,
     };
 
-    onSubmit(data);
+    if (contacts.some(contact => contact.name.toLowerCase() === data.name.toLowerCase())) {
+      return alert(`${data.name} is already in contacts`);
+    }
+
+    dispatch(addContact(data));
 
     reset();
   };
@@ -88,6 +98,4 @@ export function Form({ onSubmit }) {
   );
 }
 
-Form.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
+Form.propTypes = {};

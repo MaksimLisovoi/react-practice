@@ -1,15 +1,10 @@
-import { configureStore, createAction, createReducer } from '@reduxjs/toolkit';
+import { configureStore } from '@reduxjs/toolkit';
 
-const increment = createAction('myValue/increment');
-
-console.log(increment.toString());
-
-const myReducer = createReducer(10, {
-  [increment]: (state, action) => state + action.payload,
-});
+import { contactsReducer, filterReducer } from './reducer';
 
 export const store = configureStore({
   reducer: {
-    myValue: myReducer,
+    contacts: contactsReducer,
+    filter: filterReducer,
   },
 });
