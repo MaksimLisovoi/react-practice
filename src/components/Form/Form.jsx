@@ -48,9 +48,9 @@ export function Form() {
       number: number,
     };
 
-    if (contacts.some(contact => contact.name.toLowerCase() === data.name.toLowerCase())) {
-      return alert(`${data.name} is already in contacts`);
-    }
+    // if (contacts.some(contact => contact.name.toLowerCase() === data.name.toLowerCase())) {
+    //   return alert(`${data.name} is already in contacts`);
+    // }
 
     dispatch(addContact(data));
 

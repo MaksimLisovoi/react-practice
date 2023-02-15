@@ -13,11 +13,19 @@ export const Contacts = () => {
   const getVisibleContacts = () => {
     const normalizedFilter = storeFilter.toLowerCase();
 
+    console.log(storeContacts);
+
+    if (!storeContacts) {
+      return;
+    }
+
     return storeContacts.filter(contact => contact.name.toLowerCase().includes(normalizedFilter));
   };
   const contacts = getVisibleContacts();
 
   return (
+    // <h1>Hi</h1>
+
     <ul>
       {contacts.map(({ name, number, id }) => (
         <ContactItem key={id}>
