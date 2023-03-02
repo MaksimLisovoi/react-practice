@@ -10,11 +10,21 @@ export const contactsSlice = createSlice({
   name: 'contacts',
   // Початковий стан редюсера слайсу
   initialState: { myContacts: contactsInitialState },
+  // initialState: contactsInitialState,
   // Об'єкт редюсерів
   reducers: {
     addContact: {
       reducer(state, { payload }) {
-        state.myContacts.push(payload);
+        // state.myContacts.push(payload);
+        return {
+          ...state,
+          myContacts: [...state.myContacts, payload],
+        };
+
+        // return {
+        //   ...state,
+        //   payload,
+        // };
       },
       prepare({ name, number }) {
         return {
